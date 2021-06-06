@@ -17,14 +17,14 @@ All RPC calls are defined in the [Nano.org Docs](https://docs.nano.org/commands/
 
 ```js
 const NanoClient = require('nano-node-rpc');
-const client = NanoClient({apiKey: process.env.NINJA_API_KEY})
+const client = new NanoClient({apiKey: process.env.NINJA_API_KEY})
 ```
 
 #### Your own Nano RPC server
 
 ```js
 const NanoClient = require('nano-node-rpc');
-const client = NanoClient({url: 'http://localhost:7076'})
+const client = new NanoClient({url: 'http://localhost:7076'})
 ```
 
 ### Use methods attached to `client` to send RPC calls
