@@ -1,7 +1,9 @@
 export type ErrorResponse = {
     error: string;
 };
-export type Subtype = 'send' | 'receive' | 'change';
+
+export type Subtype = 'send' | 'receive' | 'change' | 'open' | 'epoch';
+
 export type AccountBalanceResponse = {
     balance: string;
     pending: string;
@@ -194,6 +196,9 @@ export type PeersResponse<T extends PeersResponseDetails | undefined> = {
         [ip: string]: T extends PeersResponseDetails ? PeersResponseDetails : string;
     };
 };
+export type ProcessResponse = {
+    hash: string;
+};
 export type RepresentativesResponse = {
     representatives: {
         [account: string]: string;
@@ -227,4 +232,13 @@ export type VersionResponse = {
 };
 export type UptimeResponse = {
     seconds: string;
+};
+export type WorkCancelResponse = {
+    success: '';
+};
+export type WorkGenerateResponse = {
+    work: string;
+    difficulty: string;
+    multiplier: string;
+    hash: string;
 };

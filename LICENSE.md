@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2021 [dev-ptera](https://github.com/dev-ptera)
+Copyright (c) 2022 [dev-ptera](https://github.com/dev-ptera)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
