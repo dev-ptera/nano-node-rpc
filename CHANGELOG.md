@@ -1,5 +1,15 @@
 # Changelog
 
+## v2.1.0
+
+### Added
+
+- Added `process`, `work_cancel`, & `work_generate` RPC support. 
+
+### Changed
+
+- Changed type definition of `SubType` to include 'open' and 'epoch' types.
+
 ## v2.0.2
 
 ### Fixed

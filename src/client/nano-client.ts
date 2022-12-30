@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import * as RPC from '../types/rpc-response';
+import { ProcessBody } from '../types/rpc-body';
 
 /**
  * @class NanoClient
@@ -434,6 +435,14 @@ export class NanoClient {
     }
 
     /**
+     * Publish block to the network
+     * @param {body} ProcessBody - Transaction details.
+     */
+    process(body: ProcessBody): Promise<RPC.ProcessResponse> {
+        return this._send('process', body);
+    }
+
+    /**
      * Divide a raw amount down by the rai ratio.
      * @param {string} amount - An amount to be converted.
      */
@@ -495,9 +504,25 @@ export class NanoClient {
     }
 
     /**
-     * Return node uptime in seconds
+     * Return node uptime in seconds.
      */
     uptime(): Promise<RPC.UptimeResponse> {
         return this._send('uptime');
+    }
+
+    /**
+     * Stop generating work for block.
+     * @param {string} hash - Hash supplied in a previous work generate request.
+     */
+    work_cancel(hash: string): Promise<RPC.WorkCancelResponse> {
+        return this._send('work_cancel', { hash });
+    }
+
+    /**
+     * Generates work for block.
+     * @param {string} hash - The frontier of the account or in the case of an open block, the public key representation of the account which can be found with account_key.
+     */
+    work_generate(hash: string): Promise<RPC.WorkGenerateResponse> {
+        return this._send('work_generate', { hash });
     }
 }
