@@ -492,19 +492,13 @@ export class NanoClient {
      * Networking - node telemetry contains more detailed information on the protocol implementation of telemetry.
      * * @param {body} TelemetryBody - https://docs.nano.org/commands/rpc-protocol/#telemetry
      */
-    telemetry<
-        T extends
-            | { raw: boolean; address?: never; port?: never }
-            | { address: string; port: number; raw?: never }
-            | never
-    >(
-        body?: T
-    ): T extends { address: string; port: number }
-        ? Promise<RPC.TelemetryAddressPortResponse>
-        : T extends { raw: true }
-        ? Promise<RPC.TelemetryRawResponse>
-        : Promise<RPC.TelemetryResponse> {
-        return this._send('telemetry', body) as any;
+    telemetry(body?: { raw: false }): Promise<RPC.TelemetryResponse>;
+    telemetry(body: { raw: true }): Promise<RPC.TelemetryRawResponse>;
+    telemetry(body: { address: string; port: number; raw?: boolean }): Promise<RPC.TelemetryAddressPortResponse>;
+    telemetry(
+        body?
+    ): Promise<RPC.TelemetryResponse | RPC.TelemetryRawResponse | RPC.TelemetryAddressPortResponse> {
+        return this._send('telemetry', body ?? {}) as any;
     }
 
     /**
