@@ -242,3 +242,36 @@ export type WorkGenerateResponse = {
     multiplier: string;
     hash: string;
 };
+
+export type TelemetryResponse = {
+    block_count: string;
+    cemented_count: string;
+    unchecked_count: string;
+    account_count: string;
+    bandwidth_cap: string;
+    peer_count: string;
+    protocol_version: string;
+    uptime: string;
+    genesis_block: string;
+    major_version: string;
+    minor_version: string;
+    patch_version: string;
+    pre_release_version: string;
+    maker: string;
+    timestamp: string;
+    active_difficulty: string;
+};
+
+export type TelemetryRawResponse = {
+    metrics: (TelemetryResponse & {
+        signature: string;
+        node_id: string;
+        address: string;
+        port: string;
+    })[];
+};
+
+export type TelemetryAddressPortResponse = TelemetryResponse & {
+    node_id: string;
+    signature: string;
+};

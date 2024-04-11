@@ -487,6 +487,21 @@ export class NanoClient {
     }
 
     /**
+     * Return metrics from other nodes on the network. By default,
+     * returns a summarized view of the whole network.\
+     * Networking - node telemetry contains more detailed information on the protocol implementation of telemetry.
+     * * @param {body} TelemetryBody - https://docs.nano.org/commands/rpc-protocol/#telemetry
+     */
+    telemetry(body?: { raw: false }): Promise<RPC.TelemetryResponse>;
+    telemetry(body: { raw: true }): Promise<RPC.TelemetryRawResponse>;
+    telemetry(body: { address: string; port: number; raw?: boolean }): Promise<RPC.TelemetryAddressPortResponse>;
+    telemetry(
+        body?
+    ): Promise<RPC.TelemetryResponse | RPC.TelemetryRawResponse | RPC.TelemetryAddressPortResponse> {
+        return this._send('telemetry', body ?? {}) as any;
+    }
+
+    /**
      * Check whether account is a valid account number using checksum.
      * @param {string} account - The NANO account address.
      */
